@@ -1,5 +1,4 @@
-export const response = {
-    "jsonapi": { "version": "1.0" },
+const response = {
     "status": "", //fail, success, error
     "code": 0, // code response
     "data": {},
@@ -7,12 +6,10 @@ export const response = {
     "response": "",
     "params": "",
     "message": "",
+    "affectedRows": "",
+    "insertId": "",
     "source": "",
-    "errors": [
-        {
-            "code": 0,
-            "title": "",
-            "detail": ""
-        }
-    ]
+    "errors": {}
 }
+
+export default response

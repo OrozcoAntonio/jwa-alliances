@@ -1,26 +1,15 @@
-import {
-    srvGetAllUsers,
-    srvGetOneUser,
-    srvCreateNewUser,
-    srvUpdateOneUser,
-    srvDeleteOneUser
-} from '../servicios/userService.js'
+import { srvGetAllUsers, srvGetOneUser, srvCreateNewUser, srvUpdateOneUser, srvDeleteOneUser } from '../servicios/userService.js'
 
 const ctrlGetAllUser = async (req, res) => {
     const allUsers = await srvGetAllUsers();
-    res.json([{ "status": "ok", "data": allUsers }])
+    res.status(200).json(allUsers)
 };
 
 const ctrlGetOneUser = async (req, res) => {
     const body = req.body;
-
-    const getUser = {
-        idAlliance: req.app.get('idAlliance'),
-        jwaPlayer: body.jwaPlayer
-    }
-    console.log(getUser)
-
-    res.json([{ "status": "ok", "data": userQuery }])
+    const getUser = { idPlayer: body.idPlayer, jwaPlayer: body.jwaPlayer, idAlliance: body.idAlliance }
+    const getOneUser = await srvGetOneUser(getUser)
+    res.status(200).json(getOneUser)
 }
 
 const ctrlCreateOneUser = async (req, res) => {
@@ -31,8 +20,7 @@ const ctrlCreateOneUser = async (req, res) => {
         !body.discordID ||
         !body.pseudonimo
     ) {
-        console.log('Nada que enviar')
-        res.status(201).end()
+        res.status(400).end()
         return;
     }
 
@@ -42,32 +30,49 @@ const ctrlCreateOneUser = async (req, res) => {
         discordID: body.discordID,
         pseudonimo: body.pseudonimo
     }
-
-    const idUser = await srvCreateNewUser(newUser)
-    console.log(idUser)
-    res.status(201).send(idUser)
-
-    // 200 OK
-    // 400 Sin permiso
-    // 500  Error server
+    const addedUser = await srvCreateNewUser(newUser)
+    res.status(201).json(addedUser)
 }
 
-const ctrlUpdateOneUser = (req, res) => {
-    const user = srvUpdateOneUser(req.params.idUser)
-    res.send(`Update one user ${req.params.idUser}`)
+const ctrlUpdateOneUser = async (req, res) => {
+    const body = req.body;
+
+    if (
+        !body.idPlayer ||
+        !body.jwaPlayer ||
+        !body.discordID ||
+        !body.pseudonimo
+    ) {
+        res.status(400).end()
+        return;
+    }
+
+    const updUser = {
+        idPlayer: body.idPlayer,
+        idAlliance: req.app.get('idAlliance'),
+        jwaPlayer: body.jwaPlayer,
+        discordID: body.discordID,
+        pseudonimo: body.pseudonimo
+    }
+    const updatedUser = await srvUpdateOneUser(updUser)
+    res.status(201).json(updatedUser)
 }
 
-const ctrlDeleteOneUser = (req, res) => {
-    const user = srvDeleteOneUser(req.params.idUser)
-    res.send(`Delete one user ${req.params.idUser}`)
+const ctrlDeleteOneUser = async (req, res) => {
+    const body = req.body;
+
+    if (!body.idPlayer) {
+        res.status(400).end()
+        return;
+    }
+
+    const delUser = { idPlayer: body.idPlayer }
+    const idUser = await srvDeleteOneUser(delUser)
+
+    res.status(201).json(idUser)
 }
 
-const ctrlGetUserRoute = (req, res) => {
-    res.send(`Route user ruta usuario`)
-}
-
-export { ctrlGetAllUser, ctrlGetOneUser, ctrlGetUserRoute, ctrlCreateOneUser, ctrlUpdateOneUser, ctrlDeleteOneUser };
-
+export { ctrlGetAllUser, ctrlGetOneUser, ctrlCreateOneUser, ctrlUpdateOneUser, ctrlDeleteOneUser };
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
 // PUT = Actualiza todas las representaciones de un recurso específico
