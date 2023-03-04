@@ -56,7 +56,6 @@ const ctrlDeleteOneAlliance = async (req, res) => {
     res.status(201).json(idAlliance)
 }
 
-
 export { ctrlGetAllAlliance, ctrlGetOneAlliance, ctrlCreateOneAlliance, ctrlUpdateOneAlliance, ctrlDeleteOneAlliance };
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
