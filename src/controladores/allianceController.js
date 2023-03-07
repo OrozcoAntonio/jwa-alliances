@@ -14,7 +14,7 @@ const ctrlGetOneAlliance = async (req, res) => {
 }
 
 const ctrlCreateOneAlliance = async (req, res) => {
-    const body = req.body;
+    const { body } = req.body;
 
     if (!body.alliance) {
         res.status(400).end()
