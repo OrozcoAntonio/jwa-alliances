@@ -44,10 +44,13 @@ function authMiddleware(req, res, next) {
 }
 
 app.use(authMiddleware, function (req, res, next) {
-    if (req.is('json')) {
-        next()
-    } else {
-        res.status(201).json([{ "status": "error", "data": { "status": "No JSON Object" } }])
+    try {
+        if (req.is('json')) {
+            next()
+        }
+    } catch (erroir) {
+        res.status(201).json([{ "status": erroir, "data": { "status": "No JSON Object" } }])
+
     }
 })
 
@@ -59,3 +62,5 @@ app.listen(PORT, () => { console.log(`Server en puerto ${PORT}`) })
 // Autenticación
 // Como crear un servidor node para despliegues
 // después del add regresar la info agregada
+// Validar escapar de posible consultas SQL
+// sequelize

@@ -22,7 +22,6 @@ router
     .delete('/alliance', ctrlDeleteOneAlliance)
 
 export default router
-
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
 // PUT = Actualiza todas las representaciones de un recurso específico

@@ -57,11 +57,3 @@ const ctrlDeleteOneAlliance = async (req, res) => {
 }
 
 export { ctrlGetAllAlliance, ctrlGetOneAlliance, ctrlCreateOneAlliance, ctrlUpdateOneAlliance, ctrlDeleteOneAlliance };
-// GET = Solicita una representación de un recurso específico
-// POST = Agrega un recurso específico
-// PUT = Actualiza todas las representaciones de un recurso específico
-// DELETE = Borre el recurso específico
-// CONNECT = Establece una conexión hacía el servidor identificado por el recurso destino
-// OPTIONS = Establece las opciones de comunicación para el recurso destino
-// TRACE = Realiza una prueba de bublé invertido de emnsajes a lo largo de la ruta de acceso al recurso destino
-// PATCH = Aplica modificaciones parciales a un recurso

@@ -28,9 +28,11 @@ const dbGetOneUser = (user) => {
 
 const dbInsertUser = (newUser) => {
     const query = `INSERT INTO player 
-    (idAlliance, jwaPlayer, discordID, pseudonimo) 
+    (idAlliance, jwaPlayer, discordID, 
+        pseudonimo, created, updated) 
     VALUES 
-    (${newUser.idAlliance}, '${newUser.jwaPlayer}', '${newUser.discordID}', '${newUser.pseudonimo}')`;
+    (${newUser.idAlliance}, '${newUser.jwaPlayer}', '${newUser.discordID}', 
+    '${newUser.pseudonimo}', '${newUser.createdAt}', '${newUser.updatedAt}')`;
     const result = execSQL(query)
     return result
 }

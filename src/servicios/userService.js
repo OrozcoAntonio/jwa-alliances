@@ -1,4 +1,5 @@
 import { dbGetAllUser, dbInsertUser, dbUpdateUser, dbGetOneUser, dbDeleteUser } from '../basededatos/userDB.js'
+import { APP_GLOBAL } from '../globals.js';
 
 const srvGetAllUsers = async () => {
     const jsonAlluser = { 'statusSrvc': '', 'responseDB': '0' }
@@ -37,6 +38,13 @@ const srvGetOneUser = async (idUser) => {
 const srvCreateNewUser = async (newUser) => {
     const respNewUser = { 'statusSrvc': '', 'responseDB': '0' }
     const userExist = await dbGetOneUser(newUser)
+    const userToInsert = {
+        ...newUser,
+        createdAt: new Date().toLocaleString(APP_GLOBAL.APP_DATE, { timeZone: APP_GLOBAL.APP_TZ }),
+        updatedAt: new Date().toLocaleString(APP_GLOBAL.APP_DATE, { timeZone: APP_GLOBAL.APP_TZ }),
+    }
+    //select @@datetime_format;
+    console.log(new Date().toLocaleString(APP_GLOBAL.APP_DATE, { timeZone: APP_GLOBAL.APP_TZ }))
 
     if (userExist.status === "error") {
         respNewUser.statusSrvc = userExist.status
@@ -45,7 +53,7 @@ const srvCreateNewUser = async (newUser) => {
         respNewUser.statusSrvc = 'exist'
         respNewUser.responseDB = userExist
     } else {
-        const userAdded = await dbInsertUser(newUser)
+        const userAdded = await dbInsertUser(userToInsert)
         if (userAdded.data.length > 0) {
             respNewUser.statusSrvc = userAdded.status
         } else {
