@@ -1,0 +1,1 @@
+{"version":3,"file":"db.js","sourceRoot":"","sources":["../../src/basededatos/db.ts"],"names":[],"mappings":";;;AAAA,4CAA2C;AAC3C,4CAMqB;AAER,QAAA,IAAI,GAAG,IAAA,oBAAU,EAAC;IAC3B,IAAI,EAAE,mBAAO;IACb,QAAQ,EAAE,uBAAW;IACrB,IAAI,EAAE,mBAAO;IACb,QAAQ,EAAE,uBAAW;IACrB,IAAI,EAAE,mBAAO;CAChB,CAAC,CAAA"}
