@@ -4,7 +4,8 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import { PORT } from './config'
 import { APP_GLOBAL } from './globals'
-import v1RouterUser from './v1/rutas/routes'
+import v1Routers from './v1/rutas/routes'
+import v1RoutersAllQuery from './v1/rutas/routesAllQuery'
 const app = express()
 
 app.removeAllListeners()
@@ -41,18 +42,23 @@ function authMiddleware(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+//Se crean las consultas a todos los registros para dejar de validar que sea JSON
+app.use('/api/v1', v1RoutersAllQuery)
+
 app.use(authMiddleware, function (req: Request, res: Response, next: NextFunction) {
     try {
         if (req.is('json')) {
             next()
+        } else {
+            res.status(201).json([{ "status": "NoJson", "data": { "status": "No JSON Object" } }])    
         }
     } catch (erroir) {
         res.status(201).json([{ "status": erroir, "data": { "status": "No JSON Object" } }])
-
     }
 })
 
-app.use('/api/v1', v1RouterUser)
+//Se crean las consultas para validar que sea JSON
+app.use('/api/v1', v1Routers)
 app.listen(PORT, () => { console.log(`Server en puerto ${PORT}`) })
 
 // Autenticación

@@ -10,6 +10,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const config_1 = require("./config");
 const globals_1 = require("./globals");
 const routes_1 = __importDefault(require("./v1/rutas/routes"));
+const routesAllQuery_1 = __importDefault(require("./v1/rutas/routesAllQuery"));
 const app = (0, express_1.default)();
 app.removeAllListeners();
 app.set('appName', globals_1.APP_GLOBAL.APP_NAME);
@@ -41,16 +42,22 @@ function authMiddleware(req, res, next) {
         return res.status(401).json({ message: 'Token no válido' });
     }
 }
+//Se crean las consultas a todos los registros para dejar de validar que sea JSON
+app.use('/api/v1', routesAllQuery_1.default);
 app.use(authMiddleware, function (req, res, next) {
     try {
         if (req.is('json')) {
             next();
+        }
+        else {
+            res.status(201).json([{ "status": "NoJson", "data": { "status": "No JSON Object" } }]);
         }
     }
     catch (erroir) {
         res.status(201).json([{ "status": erroir, "data": { "status": "No JSON Object" } }]);
     }
 });
+//Se crean las consultas para validar que sea JSON
 app.use('/api/v1', routes_1.default);
 app.listen(config_1.PORT, () => { console.log(`Server en puerto ${config_1.PORT}`); });
 // Autenticación

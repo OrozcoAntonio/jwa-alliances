@@ -14,23 +14,14 @@ import {
 const router = Router()
 
 router
-    .get("/user", ctrlGetOneUser)
-    .post('/user', ctrlCreateOneUser)
-    .patch('/user', ctrlUpdateOneUser)
-    .delete('/user', ctrlDeleteOneUser)
+    .get('/user/getAllUsers', ctrlGetAllUser)
 
-    .get("/alliance", ctrlGetOneAlliance)
-    .post('/alliance', ctrlCreateOneAlliance)
-    .patch('/alliance', ctrlUpdateOneAlliance)
-    .delete('/alliance', ctrlDeleteOneAlliance)
+    .get('/alliance/getAllAlliance', ctrlGetAllAlliance)
 
-    .get("/mission", ctrlGetOneMission)
-    .post('/mission', ctrlCreateOneMission)
-    .patch('/mission', ctrlUpdateOneMission)
-    .delete('/mission', ctrlDeleteOneMission)
+    .get('/mission/getAllMission', ctrlGetAllMission)
 
 
-    export default router
+export default router
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
 // PUT = Actualiza todas las representaciones de un recurso específico
