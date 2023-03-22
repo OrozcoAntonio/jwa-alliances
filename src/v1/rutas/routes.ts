@@ -7,6 +7,10 @@ import {
     ctrlGetAllAlliance, ctrlGetOneAlliance, ctrlCreateOneAlliance, ctrlUpdateOneAlliance, ctrlDeleteOneAlliance
 } from '../../controladores/allianceController'
 
+import {
+    ctrlGetAllMission, ctrlGetOneMission, ctrlCreateOneMission, ctrlUpdateOneMission, ctrlDeleteOneMission
+} from '../../controladores/MissionController'
+
 const router = Router()
 
 router
@@ -22,7 +26,14 @@ router
     .patch('/alliance', ctrlUpdateOneAlliance)
     .delete('/alliance', ctrlDeleteOneAlliance)
 
-export default router
+    .get('/mission/getAllMission', ctrlGetAllMission)
+    .get("/mission", ctrlGetOneMission)
+    .post('/mission', ctrlCreateOneMission)
+    .patch('/mission', ctrlUpdateOneMission)
+    .delete('/mission', ctrlDeleteOneMission)
+
+
+    export default router
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
 // PUT = Actualiza todas las representaciones de un recurso específico

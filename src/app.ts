@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import express, {Request, Response, NextFunction} from 'express';
-
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import { PORT } from './config'

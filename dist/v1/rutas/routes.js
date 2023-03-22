@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const usersController_1 = require("../../controladores/usersController");
 const allianceController_1 = require("../../controladores/allianceController");
+const MissionController_1 = require("../../controladores/MissionController");
 const router = (0, express_1.Router)();
 router
     .get('/user/getAllUsers', usersController_1.ctrlGetAllUser)
@@ -14,7 +15,12 @@ router
     .get("/alliance", allianceController_1.ctrlGetOneAlliance)
     .post('/alliance', allianceController_1.ctrlCreateOneAlliance)
     .patch('/alliance', allianceController_1.ctrlUpdateOneAlliance)
-    .delete('/alliance', allianceController_1.ctrlDeleteOneAlliance);
+    .delete('/alliance', allianceController_1.ctrlDeleteOneAlliance)
+    .get('/mission/getAllMission', MissionController_1.ctrlGetAllMission)
+    .get("/mission", MissionController_1.ctrlGetOneMission)
+    .post('/mission', MissionController_1.ctrlCreateOneMission)
+    .patch('/mission', MissionController_1.ctrlUpdateOneMission)
+    .delete('/mission', MissionController_1.ctrlDeleteOneMission);
 exports.default = router;
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
