@@ -17,7 +17,8 @@ router
     .get("/mission", MissionController_1.ctrlGetOneMission)
     .post('/mission', MissionController_1.ctrlCreateOneMission)
     .patch('/mission', MissionController_1.ctrlUpdateOneMission)
-    .delete('/mission', MissionController_1.ctrlDeleteOneMission);
+    .delete('/mission', MissionController_1.ctrlDeleteOneMission)
+    .get("/record:NumWeek", ctrlWeek);
 exports.default = router;
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico

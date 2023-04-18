@@ -1,14 +1,14 @@
 import { Router } from 'express'
 import {
-    ctrlGetAllUser, ctrlGetOneUser, ctrlCreateOneUser, ctrlUpdateOneUser, ctrlDeleteOneUser
+    ctrlGetOneUser, ctrlCreateOneUser, ctrlUpdateOneUser, ctrlDeleteOneUser
 } from '../../controladores/usersController'
 
 import {
-    ctrlGetAllAlliance, ctrlGetOneAlliance, ctrlCreateOneAlliance, ctrlUpdateOneAlliance, ctrlDeleteOneAlliance
+    ctrlGetOneAlliance, ctrlCreateOneAlliance, ctrlUpdateOneAlliance, ctrlDeleteOneAlliance
 } from '../../controladores/allianceController'
 
 import {
-    ctrlGetAllMission, ctrlGetOneMission, ctrlCreateOneMission, ctrlUpdateOneMission, ctrlDeleteOneMission
+    ctrlGetOneMission, ctrlCreateOneMission, ctrlUpdateOneMission, ctrlDeleteOneMission
 } from '../../controladores/MissionController'
 
 const router = Router()
@@ -29,8 +29,9 @@ router
     .patch('/mission', ctrlUpdateOneMission)
     .delete('/mission', ctrlDeleteOneMission)
 
+    .get("/record:NumWeek", ctrlWeek)
 
-    export default router
+export default router
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico
 // PUT = Actualiza todas las representaciones de un recurso específico
