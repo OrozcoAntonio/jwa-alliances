@@ -50,7 +50,7 @@ const srvCreateNewUser = async (newUser: newUserInterface) => {
         respNewUser.responseDB = userExist
     } else {
         const userAdded = await dbInsertUser(userToInsert)
-        if (userAdded.data > 0) {
+        if (userAdded.dataLenght > 0) {
             respNewUser.statusSrvc = userAdded.status
         } else {
             respNewUser.statusSrvc = 'error'

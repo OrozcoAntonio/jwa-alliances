@@ -47,7 +47,7 @@ const srvCreateNewAlliance = async (newAlliance: newAlliInterface) => {
         respNewAlliance.responseDB = allianceExist
     } else {
         const allianceAdded = await dbInsertAlliance(newAlliance)
-        if (allianceAdded.data > 0) {
+        if (allianceAdded.dataLenght > 0) {
             respNewAlliance.statusSrvc = allianceAdded.status
         } else {
             respNewAlliance.statusSrvc = 'error'

@@ -59,6 +59,28 @@ app.use(authMiddleware, function (req, res, next) {
 });
 //Se crean las consultas para validar que sea JSON
 app.use('/api/v1', routes_1.default);
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
+function logErrors(err, req, res, next) {
+    console.error(err.stack);
+    next(err);
+}
+function clientErrorHandler(err, req, res, next) {
+    if (req.xhr) {
+        res.status(500).send({ error: 'Something failed!' });
+    }
+    else {
+        next(err);
+    }
+}
+function errorHandler(err, req, res, next) {
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.status(500);
+    res.render('error', { error: err });
+}
 app.listen(config_1.PORT, () => { console.log(`Server en puerto ${config_1.PORT}`); });
 // Autenticación
 // Como crear un servidor node para despliegues

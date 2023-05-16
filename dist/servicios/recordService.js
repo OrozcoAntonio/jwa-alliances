@@ -9,25 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.srvDeleteOneMission = exports.srvUpdateOneMission = exports.srvCreateNewMission = exports.srvGetOneMission = exports.srvGetAllMission = void 0;
+exports.srvDeleteOneMission = exports.srvUpdateOneMission = exports.srvCreateNewMission = exports.srvGetOneMission = void 0;
 const missionDB_1 = require("../basededatos/missionDB");
-const srvGetAllMission = () => __awaiter(void 0, void 0, void 0, function* () {
-    const jsonAllmission = { 'statusSrvc': '', 'responseDB': {} };
-    const jsonAllMissionData = yield (0, missionDB_1.dbGetAllMission)();
-    if (jsonAllMissionData.status === "error") {
-        jsonAllmission.statusSrvc = jsonAllMissionData.status;
-        jsonAllmission.responseDB = jsonAllMissionData.errors;
-    }
-    else if (jsonAllMissionData.dataLenght > 0) {
-        jsonAllmission.statusSrvc = 'exist';
-        jsonAllmission.responseDB = jsonAllMissionData;
-    }
-    else {
-        jsonAllmission.statusSrvc = 'notfound';
-    }
-    return jsonAllmission;
-});
-exports.srvGetAllMission = srvGetAllMission;
 const srvGetOneMission = (idMission) => __awaiter(void 0, void 0, void 0, function* () {
     const respOneMission = { 'statusSrvc': '', 'responseDB': {} };
     const jsonMission = yield (0, missionDB_1.dbGetOneMission)(idMission);
@@ -107,4 +90,4 @@ const srvDeleteOneMission = (delMission) => __awaiter(void 0, void 0, void 0, fu
     return respDelMission;
 });
 exports.srvDeleteOneMission = srvDeleteOneMission;
-//# sourceMappingURL=missionService.js.map
+//# sourceMappingURL=recordService.js.map

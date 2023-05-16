@@ -59,8 +59,33 @@ app.use(authMiddleware, function (req: Request, res: Response, next: NextFunctio
 
 //Se crean las consultas para validar que sea JSON
 app.use('/api/v1', v1Routers)
-app.listen(PORT, () => { console.log(`Server en puerto ${PORT}`) })
 
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
+
+function logErrors(err: Error, req: Request, res: Response, next: NextFunction) {
+    console.error(err.stack);
+    next(err);
+}
+
+function clientErrorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+    if (req.xhr) {
+      res.status(500).send({ error: 'Something failed!' });
+    } else {
+      next(err);
+    }
+}
+
+function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+    if (res.headersSent) {
+        return next(err);
+      }
+      res.status(500);
+      res.render('error', { error: err });
+}
+
+app.listen(PORT, () => { console.log(`Server en puerto ${PORT}`) })
 // Autenticación
 // Como crear un servidor node para despliegues
 // después del add regresar la info agregada

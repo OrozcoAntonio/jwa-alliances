@@ -50,7 +50,7 @@ export const srvCreateNewMission = async (newMission: newMissionInterface) => {
         respNewMission.responseDB = missionExist
     } else {
         const missionAdded = await dbInsertMission(missionToInsert)
-        if (missionAdded.data > 0) {
+        if (missionAdded.dataLenght > 0) {
             respNewMission.statusSrvc = missionAdded.status
         } else {
             respNewMission.statusSrvc = 'error'

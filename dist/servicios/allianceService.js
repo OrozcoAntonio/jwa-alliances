@@ -58,7 +58,7 @@ const srvCreateNewAlliance = (newAlliance) => __awaiter(void 0, void 0, void 0, 
     }
     else {
         const allianceAdded = yield (0, allianceDB_1.dbInsertAlliance)(newAlliance);
-        if (allianceAdded.data > 0) {
+        if (allianceAdded.dataLenght > 0) {
             respNewAlliance.statusSrvc = allianceAdded.status;
         }
         else {

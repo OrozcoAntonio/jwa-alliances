@@ -59,7 +59,7 @@ const srvCreateNewMission = (newMission) => __awaiter(void 0, void 0, void 0, fu
     }
     else {
         const missionAdded = yield (0, missionDB_1.dbInsertMission)(missionToInsert);
-        if (missionAdded.dataLenght > 0) {
+        if (missionAdded.data > 0) {
             respNewMission.statusSrvc = missionAdded.status;
         }
         else {
@@ -107,4 +107,4 @@ const srvDeleteOneMission = (delMission) => __awaiter(void 0, void 0, void 0, fu
     return respDelMission;
 });
 exports.srvDeleteOneMission = srvDeleteOneMission;
-//# sourceMappingURL=missionService.js.map
+//# sourceMappingURL=missionService%20copy.js.map

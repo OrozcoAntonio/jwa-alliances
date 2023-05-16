@@ -59,7 +59,7 @@ const srvCreateNewUser = (newUser) => __awaiter(void 0, void 0, void 0, function
     }
     else {
         const userAdded = yield (0, userDB_1.dbInsertUser)(userToInsert);
-        if (userAdded.data > 0) {
+        if (userAdded.dataLenght > 0) {
             respNewUser.statusSrvc = userAdded.status;
         }
         else {
