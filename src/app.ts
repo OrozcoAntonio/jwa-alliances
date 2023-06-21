@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import express, {Request, Response, NextFunction} from 'express';
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
-import { PORT } from './config'
+import { PORT } from './config/config'
 import { APP_GLOBAL } from './globals'
 import v1Routers from './v1/rutas/routes'
 import v1RoutersAllQuery from './v1/rutas/routesAllQuery'
