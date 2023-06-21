@@ -9,85 +9,187 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.srvDeleteOneMission = exports.srvUpdateOneMission = exports.srvCreateNewMission = exports.srvGetOneMission = void 0;
-const missionDB_1 = require("../basededatos/missionDB");
-const srvGetOneMission = (idMission) => __awaiter(void 0, void 0, void 0, function* () {
-    const respOneMission = { 'statusSrvc': '', 'responseDB': {} };
-    const jsonMission = yield (0, missionDB_1.dbGetOneMission)(idMission);
-    if (jsonMission.status === "error") {
-        respOneMission.statusSrvc = jsonMission.status;
-        respOneMission.responseDB = jsonMission.errors;
+exports.srvDeleteOneRecord = exports.srvUpdateOneRecord = exports.srvCreateOneRecord = exports.srvGetRecordAnioMision = exports.srvGetRecordSemanaMision = exports.srvGetRecordAnioPlayer = exports.srvGetRecordSemanaPlayer = exports.srvGetRecordAnio = exports.srvGetRecordSemana = exports.srvGetOneRecord = void 0;
+const recordDB_1 = require("../basededatos/recordDB");
+const srvGetOneRecord = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetOneRecord)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
     }
-    else if (jsonMission.dataLenght > 0) {
-        respOneMission.statusSrvc = 'exist';
-        respOneMission.responseDB = jsonMission;
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
     }
     else {
-        respOneMission.statusSrvc = 'notfound';
+        respOneRecord.statusSrvc = 'notfound';
     }
-    return respOneMission;
+    return respOneRecord;
 });
-exports.srvGetOneMission = srvGetOneMission;
-const srvCreateNewMission = (newMission) => __awaiter(void 0, void 0, void 0, function* () {
-    const respNewMission = { 'statusSrvc': '', 'responseDB': {} };
-    const missionExist = yield (0, missionDB_1.dbGetOneMission)(newMission);
-    const missionToInsert = Object.assign({}, newMission);
-    if (missionExist.status === "error") {
-        respNewMission.statusSrvc = missionExist.status;
-        respNewMission.responseDB = missionExist.errors;
+exports.srvGetOneRecord = srvGetOneRecord;
+const srvGetRecordSemana = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetRecordSemana)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
     }
-    else if (missionExist.dataLenght > 0) {
-        respNewMission.statusSrvc = 'exist';
-        respNewMission.responseDB = missionExist;
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
     }
     else {
-        const missionAdded = yield (0, missionDB_1.dbInsertMission)(missionToInsert);
-        if (missionAdded.dataLenght > 0) {
-            respNewMission.statusSrvc = missionAdded.status;
+        respOneRecord.statusSrvc = 'notfound';
+    }
+    return respOneRecord;
+});
+exports.srvGetRecordSemana = srvGetRecordSemana;
+const srvGetRecordAnio = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetRecordAnio)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
+    }
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
+    }
+    else {
+        respOneRecord.statusSrvc = 'notfound';
+    }
+    return respOneRecord;
+});
+exports.srvGetRecordAnio = srvGetRecordAnio;
+const srvGetRecordSemanaPlayer = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetRecordSemanaPlayer)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
+    }
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
+    }
+    else {
+        respOneRecord.statusSrvc = 'notfound';
+    }
+    return respOneRecord;
+});
+exports.srvGetRecordSemanaPlayer = srvGetRecordSemanaPlayer;
+const srvGetRecordAnioPlayer = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetRecordAnioPlayer)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
+    }
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
+    }
+    else {
+        respOneRecord.statusSrvc = 'notfound';
+    }
+    return respOneRecord;
+});
+exports.srvGetRecordAnioPlayer = srvGetRecordAnioPlayer;
+const srvGetRecordSemanaMision = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetRecordSemanaMision)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
+    }
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
+    }
+    else {
+        respOneRecord.statusSrvc = 'notfound';
+    }
+    return respOneRecord;
+});
+exports.srvGetRecordSemanaMision = srvGetRecordSemanaMision;
+const srvGetRecordAnioMision = (idRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const jsonRecord = yield (0, recordDB_1.dbGetRecordAnioMision)(idRecord);
+    if (jsonRecord.status === "error") {
+        respOneRecord.statusSrvc = jsonRecord.status;
+        respOneRecord.responseDB = jsonRecord.errors;
+    }
+    else if (jsonRecord.dataLenght > 0) {
+        respOneRecord.statusSrvc = 'exist';
+        respOneRecord.responseDB = jsonRecord;
+    }
+    else {
+        respOneRecord.statusSrvc = 'notfound';
+    }
+    return respOneRecord;
+});
+exports.srvGetRecordAnioMision = srvGetRecordAnioMision;
+const srvCreateOneRecord = (newRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respNewRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const recordExist = yield (0, recordDB_1.dbGetOneRecord)(newRecord);
+    const recordToInsert = Object.assign({}, newRecord);
+    if (recordExist.status === "error") {
+        respNewRecord.statusSrvc = recordExist.status;
+        respNewRecord.responseDB = recordExist.errors;
+    }
+    else if (recordExist.dataLenght > 0) {
+        respNewRecord.statusSrvc = 'exist';
+        respNewRecord.responseDB = recordExist;
+    }
+    else {
+        const recordAdded = yield (0, recordDB_1.dbInsertRecord)(recordToInsert);
+        if (recordAdded.dataLenght > 0) {
+            respNewRecord.statusSrvc = recordAdded.status;
         }
         else {
-            respNewMission.statusSrvc = 'error';
+            respNewRecord.statusSrvc = 'error';
         }
-        respNewMission.responseDB = missionAdded;
+        respNewRecord.responseDB = recordAdded;
     }
-    return respNewMission;
+    return respNewRecord;
 });
-exports.srvCreateNewMission = srvCreateNewMission;
-const srvUpdateOneMission = (uptMission) => __awaiter(void 0, void 0, void 0, function* () {
-    const respUpdMission = { 'statusSrvc': '', 'responseDB': {} };
-    const missionExist = yield (0, missionDB_1.dbGetOneMission)(uptMission);
-    const missionToUpdate = Object.assign({}, uptMission);
-    if (missionExist.status === "error") {
-        respUpdMission.statusSrvc = missionExist.status;
-        respUpdMission.responseDB = missionExist.errors;
+exports.srvCreateOneRecord = srvCreateOneRecord;
+const srvUpdateOneRecord = (uptRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respUpdRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const recordExist = yield (0, recordDB_1.dbGetOneRecord)(uptRecord);
+    const recordToUpdate = Object.assign({}, uptRecord);
+    if (recordExist.status === "error") {
+        respUpdRecord.statusSrvc = recordExist.status;
+        respUpdRecord.responseDB = recordExist.errors;
     }
-    else if (missionExist.dataLenght > 0) {
-        const missionUpdated = yield (0, missionDB_1.dbUpdateMission)(missionToUpdate);
-        respUpdMission.statusSrvc = missionUpdated.status;
-        respUpdMission.responseDB = missionUpdated;
+    else if (recordExist.dataLenght > 0) {
+        const recordUpdated = yield (0, recordDB_1.dbUpdateRecord)(recordToUpdate);
+        respUpdRecord.statusSrvc = recordUpdated.status;
+        respUpdRecord.responseDB = recordUpdated;
     }
     else {
-        respUpdMission.statusSrvc = 'notfound';
+        respUpdRecord.statusSrvc = 'notfound';
     }
-    return respUpdMission;
+    return respUpdRecord;
 });
-exports.srvUpdateOneMission = srvUpdateOneMission;
-const srvDeleteOneMission = (delMission) => __awaiter(void 0, void 0, void 0, function* () {
-    const respDelMission = { 'statusSrvc': '', 'responseDB': {} };
-    const missionExist = yield (0, missionDB_1.dbGetOneMission)(delMission);
-    if (missionExist.status === "error") {
-        respDelMission.statusSrvc = missionExist.status;
-        respDelMission.responseDB = missionExist.errors;
+exports.srvUpdateOneRecord = srvUpdateOneRecord;
+const srvDeleteOneRecord = (delRecord) => __awaiter(void 0, void 0, void 0, function* () {
+    const respDelRecord = { 'statusSrvc': '', 'responseDB': {} };
+    const recordExist = yield (0, recordDB_1.dbGetOneRecord)(delRecord);
+    if (recordExist.status === "error") {
+        respDelRecord.statusSrvc = recordExist.status;
+        respDelRecord.responseDB = recordExist.errors;
     }
-    else if (missionExist.dataLenght > 0) {
-        const missionDeleted = yield (0, missionDB_1.dbDeleteMission)(delMission);
-        respDelMission.statusSrvc = missionDeleted.status;
-        respDelMission.responseDB = missionDeleted.data;
+    else if (recordExist.dataLenght > 0) {
+        const recordDeleted = yield (0, recordDB_1.dbDeleteRecord)(delRecord);
+        respDelRecord.statusSrvc = recordDeleted.status;
+        respDelRecord.responseDB = recordDeleted.data;
     }
     else {
-        respDelMission.statusSrvc = 'notfound';
+        respDelRecord.statusSrvc = 'notfound';
     }
-    return respDelMission;
+    return respDelRecord;
 });
-exports.srvDeleteOneMission = srvDeleteOneMission;
+exports.srvDeleteOneRecord = srvDeleteOneRecord;
 //# sourceMappingURL=recordService.js.map

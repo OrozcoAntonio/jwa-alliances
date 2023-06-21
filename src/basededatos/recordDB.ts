@@ -1,8 +1,8 @@
 import { APP_GLOBAL } from '../globals';
-import { oneMissionInterface, newMissionInterface, updMissionInterface } from '../interfaces/Mission.interface';
-import execSQL from './execSQL'
+import { oneRecordInterface, newRecordInterface, updRecordInterface } from '../interfaces/Record.interface';
+import execSQL from '../config/execSQL'
 
- export const dbGetOneRecord = (oneMission: oneMissionInterface) => {
+ export const dbGetOneRecord = (oneMission: oneRecordInterface) => {
     let query
     if (oneMission.idMission !== 0) {
         query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 

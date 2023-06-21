@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbDeleteMission = exports.dbUpdateMission = exports.dbInsertMission = exports.dbGetOneMission = exports.dbGetAllMission = void 0;
 const globals_1 = require("../globals");
-const execSQL_1 = __importDefault(require("./execSQL"));
+const execSQL_1 = __importDefault(require("../config/execSQL"));
 const dbGetAllMission = () => {
     const query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
     FROM mission MIS 

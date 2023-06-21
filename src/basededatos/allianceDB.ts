@@ -1,6 +1,6 @@
 import { APP_GLOBAL } from '../globals';
 import { oneAlliInterface, newAlliInterface, updAlliInterface } from '../interfaces/Alliance.interface';
-import execSQL from './execSQL'
+import execSQL from '../config/execSQL'
 
 const dbGetAllAlliance = () => {
     const query = `SELECT idAlliance, Alliance FROM alliance `;

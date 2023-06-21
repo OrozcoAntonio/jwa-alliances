@@ -30,7 +30,7 @@ const ctrlGetRecordSemana = (req, res) => __awaiter(void 0, void 0, void 0, func
         return;
     }
     const getRecord = { anio, semana };
-    const rtnRecord = yield (0, recordService_1.srvGetOneRecord)(getRecord);
+    const rtnRecord = yield (0, recordService_1.srvGetRecordSemana)(getRecord);
     res.status(201).json(rtnRecord);
 });
 exports.ctrlGetRecordSemana = ctrlGetRecordSemana;
@@ -41,7 +41,7 @@ const ctrlGetRecordAnio = (req, res) => __awaiter(void 0, void 0, void 0, functi
         return;
     }
     const getRecord = { anio };
-    const rtnRecord = yield (0, recordService_1.srvGetOneRecord)(getRecord);
+    const rtnRecord = yield (0, recordService_1.srvGetRecordAnio)(getRecord);
     res.status(201).json(rtnRecord);
 });
 exports.ctrlGetRecordAnio = ctrlGetRecordAnio;
@@ -52,7 +52,7 @@ const ctrlGetRecordSemanaPlayer = (req, res) => __awaiter(void 0, void 0, void 0
         return;
     }
     const getRecord = { anio, semana, idPlayer };
-    const rtnRecord = yield (0, recordService_1.srvGetOneRecord)(getRecord);
+    const rtnRecord = yield (0, recordService_1.srvGetRecordSemanaPlayer)(getRecord);
     res.status(201).json(rtnRecord);
 });
 exports.ctrlGetRecordSemanaPlayer = ctrlGetRecordSemanaPlayer;
@@ -63,7 +63,7 @@ const ctrlGetRecordAnioPlayer = (req, res) => __awaiter(void 0, void 0, void 0, 
         return;
     }
     const getRecord = { anio, idPlayer };
-    const rtnRecord = yield (0, recordService_1.srvGetOneRecord)(getRecord);
+    const rtnRecord = yield (0, recordService_1.srvGetRecordAnioPlayer)(getRecord);
     res.status(201).json(rtnRecord);
 });
 exports.ctrlGetRecordAnioPlayer = ctrlGetRecordAnioPlayer;
@@ -74,7 +74,7 @@ const ctrlGetRecordSemanaMision = (req, res) => __awaiter(void 0, void 0, void 0
         return;
     }
     const getRecord = { anio, semana, idMision };
-    const rtnRecord = yield (0, recordService_1.srvGetOneRecord)(getRecord);
+    const rtnRecord = yield (0, recordService_1.srvGetRecordSemanaMision)(getRecord);
     res.status(201).json(rtnRecord);
 });
 exports.ctrlGetRecordSemanaMision = ctrlGetRecordSemanaMision;
@@ -85,7 +85,7 @@ const ctrlGetRecordAnioMision = (req, res) => __awaiter(void 0, void 0, void 0, 
         return;
     }
     const getRecord = { anio, idMision };
-    const rtnRecord = yield (0, recordService_1.srvGetOneRecord)(getRecord);
+    const rtnRecord = yield (0, recordService_1.srvGetRecordAnioMision)(getRecord);
     res.status(201).json(rtnRecord);
 });
 exports.ctrlGetRecordAnioMision = ctrlGetRecordAnioMision;
@@ -96,7 +96,7 @@ const ctrlCreateOneRecord = (req, res) => __awaiter(void 0, void 0, void 0, func
         return;
     }
     const updRecord = { anio, semana, idPlayer, idMission, posicion, rank };
-    const getUpdAlliance = yield srvCreateOneRecord(updRecord);
+    const getUpdAlliance = yield (0, recordService_1.srvCreateOneRecord)(updRecord);
     res.status(201).json(getUpdAlliance);
 });
 exports.ctrlCreateOneRecord = ctrlCreateOneRecord;
@@ -120,7 +120,7 @@ const ctrlDeleteOneRecord = (req, res) => __awaiter(void 0, void 0, void 0, func
         return;
     }
     const updRecord = { idRecord, anio, semana, idPlayer, idMission, posicion, rank };
-    const getUpdAlliance = yield srvDeleteOneRecord(updRecord);
+    const getUpdAlliance = yield (0, recordService_1.srvDeleteOneRecord)(updRecord);
     res.status(201).json(getUpdAlliance);
 });
 exports.ctrlDeleteOneRecord = ctrlDeleteOneRecord;

@@ -1,6 +1,6 @@
 import { APP_GLOBAL } from '../globals';
 import { oneMissionInterface, newMissionInterface, updMissionInterface } from '../interfaces/Mission.interface';
-import execSQL from './execSQL'
+import execSQL from '../config/execSQL'
 
 export const dbGetAllMission = () => {
     const query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 

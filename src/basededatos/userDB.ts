@@ -1,6 +1,6 @@
 import { APP_GLOBAL } from '../globals';
 import { oneUserInterface, newUserInterface, updUserInterface } from '../interfaces/User.interface';
-import execSQL from './execSQL'
+import execSQL from '../config/execSQL'
 
 const dbGetAllUser = () => {
     const query = `SELECT PL.idPlayer, AL.Alliance, PL.jwaPlayer, PL.discordID, PL.pseudonimo

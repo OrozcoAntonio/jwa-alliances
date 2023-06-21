@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbDeleteAlliance = exports.dbGetOneAlliance = exports.dbUpdateAlliance = exports.dbInsertAlliance = exports.dbGetAllAlliance = void 0;
-const execSQL_1 = __importDefault(require("./execSQL"));
+const execSQL_1 = __importDefault(require("../config/execSQL"));
 const dbGetAllAlliance = () => {
     const query = `SELECT idAlliance, Alliance FROM alliance `;
     const result = (0, execSQL_1.default)(query);
