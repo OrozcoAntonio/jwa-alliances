@@ -8,10 +8,13 @@ import {
 import {
     ctrlGetOneMission, ctrlCreateOneMission, ctrlUpdateOneMission, ctrlDeleteOneMission
 } from '../../controladores/MissionController'
+import { ctrlGetRecordSemana } from '../../controladores/recordController'
+
+/*
 import {
     ctrlGetOneRecord, ctrlGetRecordSemana, ctrlGetRecordAnio, ctrlGetRecordSemanaPlayer, ctrlGetRecordAnioPlayer, ctrlGetRecordSemanaMision, ctrlGetRecordAnioMision, ctrlCreateOneRecord, ctrlUpdateOneRecord, ctrlDeleteOneRecord
 } from '../../controladores/recordController'
-
+*/
 
 const router = Router()
 
@@ -35,8 +38,9 @@ router
     .delete('/mission', ctrlDeleteOneMission)
 
 
+    .get("/record", ctrlGetRecordSemana)
+/*
     .get("/record", ctrlGetOneRecord)
-    .get("/record:semana", ctrlGetRecordSemana)
     .get("/record:anio", ctrlGetRecordAnio)
     .get("/record:anio:semana:idPlayer", ctrlGetRecordSemanaPlayer)
     .get("/record:anio:idPlayer", ctrlGetRecordAnioPlayer)
@@ -45,7 +49,7 @@ router
     .post('/record', ctrlCreateOneRecord)
     .patch('/record', ctrlUpdateOneRecord)
     .delete('/record', ctrlDeleteOneRecord)
-
+*/
 export default router
 // GET = Solicita una representación de un recurso específico
 // POST = Agrega un recurso específico

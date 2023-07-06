@@ -1,27 +1,26 @@
 import { Response, Request } from 'express'
 import { srvGetAllMission, srvGetOneMission, srvCreateNewMission, srvUpdateOneMission, srvDeleteOneMission } from '../servicios/missionService'
 
-export const ctrlGetAllMission = async ( req: Request, res: Response) => {
+export const ctrlGetAllMission = async (req: Request, res: Response) => {
     const allMissions = await srvGetAllMission();
     res.status(200).json(allMissions)
 };
 
 export const ctrlGetOneMission = async (req: Request, res: Response) => {
-    const { idMission= 0, idAlliance, type = '', missionDescripcion = '', missionAlias = '' } = req.body;
+    const { idMission = 0, idAlliance, type = '', missionDescripcion = '', missionAlias = '' } = req.body;
     const getMission = { idMission, idAlliance, type, missionDescripcion, missionAlias }
     const getOneMission = await srvGetOneMission(getMission)
-    
+
     res.status(200).json(getOneMission)
 }
 
 export const ctrlCreateOneMission = async (req: Request, res: Response) => {
     const { idMission, idAlliance, type, missionDescripcion, missionAlias, createdAt = Date, updatedAt = Date } = req.body;
 
-    if ( !type || !missionDescripcion || !missionAlias ) {
+    if (!type || !missionDescripcion || !missionAlias) {
         res.status(400).end()
         return;
     }
-
 
     const newMission = { idMission, idAlliance, type, missionDescripcion, missionAlias }
     const addedMission = await srvCreateNewMission(newMission)
@@ -31,7 +30,7 @@ export const ctrlCreateOneMission = async (req: Request, res: Response) => {
 export const ctrlUpdateOneMission = async (req: Request, res: Response) => {
     const { idMission, idAlliance, type, missionDescripcion, missionAlias } = req.body;
 
-    if ( !type || !missionDescripcion || !missionAlias ) {
+    if (!type || !missionDescripcion || !missionAlias) {
         res.status(400).end()
         return;
     }

@@ -1,6 +1,46 @@
-import { dbGetOneRecord, dbGetRecordSemana, dbGetRecordAnio, dbGetRecordSemanaPlayer, dbGetRecordAnioPlayer, dbGetRecordSemanaMision, dbGetRecordAnioMision, dbInsertRecord, dbUpdateRecord, dbDeleteRecord } from '../basededatos/recordDB'
-import { newRecordInterface, updRecordInterface, oneRecordInterface, recordAnioPlayerInterface, recordAnioInterface, recordSemanaInterface, recordSemanaMissionInterface, recordAnioMissionInterface } from '../interfaces/Record.interface';
+//import { dbGetOneRecord, dbGetRecordSemana, dbGetRecordAnio, dbGetRecordSemanaPlayer, dbGetRecordAnioPlayer, dbGetRecordSemanaMision, dbGetRecordAnioMision, dbInsertRecord, dbUpdateRecord, dbDeleteRecord } from '../basededatos/recordDB'
+//import { newRecordInterface, updRecordInterface, oneRecordInterface, recordAnioPlayerInterface, recordAnioInterface, recordSemanaInterface, recordSemanaMissionInterface, recordAnioMissionInterface } from '../interfaces/Record.interface';
 
+import { dbGetRecordSemana } from '../basededatos/recordDB'
+import { dbGetAllMission } from '../basededatos/missionDB'
+import { recordSemanaInterface, newRecordInterface } from '../interfaces/Record.interface';
+
+export const srvGetRecordSemana = async (recordSemana: recordSemanaInterface) => {
+    const respGetRecord = { 'statusSrvc': '', 'responseDB': {} }
+    const validate = await srvCreateOneRecordSemana(recordSemana);
+
+    const jsonRecord = await dbGetRecordSemana(recordSemana);
+
+    if (jsonRecord.status === "error") {
+        respGetRecord.statusSrvc = jsonRecord.status
+        respGetRecord.responseDB = jsonRecord.errors
+    } else if (jsonRecord.dataLenght > 0) {
+        respGetRecord.statusSrvc = 'exist'
+        respGetRecord.responseDB = jsonRecord
+    } else {
+        respGetRecord.statusSrvc = 'notfound'
+    }
+
+    return respGetRecord;
+}
+
+const srvCreateOneRecordSemana = async (newRecord: newRecordInterface) => {
+    const revrecord = { ...newRecord }
+    const recordRank = { 0: false, 1: false }
+    const missions = await dbGetAllMission()
+
+    const regMissions = missions.dataLenght
+    console.log(missions)
+
+    for (let rank = 0; rank <= 9; rank++) {
+        //const jsonRecord = await dbGetRecordSemana()
+    }
+
+    return;
+}
+
+
+/*
 export const srvGetOneRecord = async (idRecord: oneRecordInterface) => {
     const respOneRecord = { 'statusSrvc': '', 'responseDB': {} }
     const jsonRecord = await dbGetOneRecord(idRecord);
@@ -17,24 +57,9 @@ export const srvGetOneRecord = async (idRecord: oneRecordInterface) => {
 
     return respOneRecord;
 }
+*/
 
-export const srvGetRecordSemana = async (idRecord: recordSemanaInterface) => {
-    const respOneRecord = { 'statusSrvc': '', 'responseDB': {} }
-    const jsonRecord = await dbGetRecordSemana(idRecord);
-
-    if (jsonRecord.status === "error") {
-        respOneRecord.statusSrvc = jsonRecord.status
-        respOneRecord.responseDB = jsonRecord.errors
-    } else if (jsonRecord.dataLenght > 0) {
-        respOneRecord.statusSrvc = 'exist'
-        respOneRecord.responseDB = jsonRecord
-    } else {
-        respOneRecord.statusSrvc = 'notfound'
-    }
-
-    return respOneRecord;
-}
-
+/*
 export const srvGetRecordAnio = async (idRecord: recordAnioInterface) => {
     const respOneRecord = { 'statusSrvc': '', 'responseDB': {} }
     const jsonRecord = await dbGetRecordAnio(idRecord);
@@ -120,32 +145,6 @@ export const srvGetRecordAnioMision = async (idRecord: recordAnioMissionInterfac
     return respOneRecord;
 }
 
-export const srvCreateOneRecord = async (newRecord: newRecordInterface) => {
-    const respNewRecord = { 'statusSrvc': '', 'responseDB': {} }
-    const recordExist = await dbGetOneRecord(newRecord)
-    const recordToInsert = {
-        ...newRecord
-    }
-
-    if (recordExist.status === "error") {
-        respNewRecord.statusSrvc = recordExist.status
-        respNewRecord.responseDB = recordExist.errors
-    } else if (recordExist.dataLenght > 0) {
-        respNewRecord.statusSrvc = 'exist'
-        respNewRecord.responseDB = recordExist
-    } else {
-        const recordAdded = await dbInsertRecord(recordToInsert)
-        if (recordAdded.dataLenght > 0) {
-            respNewRecord.statusSrvc = recordAdded.status
-        } else {
-            respNewRecord.statusSrvc = 'error'
-        }
-        respNewRecord.responseDB = recordAdded
-    }
-
-    return respNewRecord;
-}
-
 export const srvUpdateOneRecord = async (uptRecord: updRecordInterface) => {
     const respUpdRecord = { 'statusSrvc': '', 'responseDB': {} }
     const recordExist = await dbGetOneRecord(uptRecord)
@@ -185,3 +184,4 @@ export const srvDeleteOneRecord = async (delRecord: oneRecordInterface) => {
 
     return respDelRecord;
 }
+*/

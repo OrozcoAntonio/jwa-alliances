@@ -1,8 +1,44 @@
 import { APP_GLOBAL } from '../globals';
-import { oneRecordInterface, newRecordInterface, updRecordInterface } from '../interfaces/Record.interface';
+import { recordSemanaInterface, rcdExist } from '../interfaces/Record.interface';
 import execSQL from '../config/execSQL'
 
- export const dbGetOneRecord = (oneMission: oneRecordInterface) => {
+export const dbGetOneRecordExist = (oneRecordExist: rcdExist) => {
+    let query
+
+    query = `SELECT PUN.idRecord, PUN.Anio, PUN.Semana, PUN.IdMission, PUN.Rank, PUN.IdPlayer
+            FROM puntaje PUN
+            LEFT JOIN player PLY ON PLY.IdPlayer = PUN.IdPlayer
+            WHERE PUN.Anio = ${oneRecordExist.anio} 
+            AND PUN.Semana = ${oneRecordExist.semana} 
+            AND PUN.IdMission = ${oneRecordExist.idMission} 
+            AND PUN.Rank = ${oneRecordExist.rank} `;
+
+    const result = execSQL(query)
+    return result
+}
+
+export const dbGetRecordSemana = (recordSemanaInterface: recordSemanaInterface) => {
+    let query
+    if (recordSemanaInterface.anio !== 0) {
+        query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
+        FROM mission MIS 
+        INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
+        WHERE MIS.idMission = ${recordSemanaInterface.anio}`;
+    } else {
+        query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
+        FROM mission MIS 
+        INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
+        WHERE ALI.idAlliance = ${recordSemanaInterface.anio} 
+        AND MIS.missionDescripcion = '${recordSemanaInterface.semana}' `;
+    }
+
+    const result = execSQL(query)
+    return result
+}
+/*
+
+
+export const dbGetOneRecord = (oneMission: oneRecordInterface) => {
     let query
     if (oneMission.idMission !== 0) {
         query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
@@ -50,3 +86,4 @@ export const dbDeleteRecord = (delMission: oneMissionInterface) => {
     const result = execSQL(query)
     return result
 }
+*/

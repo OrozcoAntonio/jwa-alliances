@@ -9,7 +9,8 @@ const execSQL_1 = __importDefault(require("../config/execSQL"));
 const dbGetAllMission = () => {
     const query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
     FROM mission MIS 
-    INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance `;
+    INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
+    WHERE MIS.IdAlliance = ` + globals_1.APP_GLOBAL.ID_ALLIANCE;
     const result = (0, execSQL_1.default)(query);
     return result;
 };
@@ -20,13 +21,13 @@ const dbGetOneMission = (oneMission) => {
         query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
         FROM mission MIS 
         INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
-        WHERE MIS.idMission = ${oneMission.idMission}`;
+        WHERE MIS.idMission = ${oneMission.idMission}` + ` AND ALI.idAlliance = ` + globals_1.APP_GLOBAL.ID_ALLIANCE;
     }
     else {
         query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
         FROM mission MIS 
         INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
-        WHERE ALI.idAlliance = ${oneMission.idMission} 
+        WHERE ALI.idAlliance = ` + globals_1.APP_GLOBAL.ID_ALLIANCE + `  
         AND MIS.missionDescripcion = '${oneMission.missionDescripcion}' `;
     }
     const result = (0, execSQL_1.default)(query);

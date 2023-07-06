@@ -5,7 +5,7 @@ import execSQL from '../config/execSQL'
 const dbGetAllUser = () => {
     const query = `SELECT PL.idPlayer, AL.Alliance, PL.jwaPlayer, PL.discordID, PL.pseudonimo
      FROM player PL
-     INNER JOIN alliance AL ON AL.idAlliance = PL.idAlliance`;
+     INNER JOIN alliance AL ON AL.idAlliance = PL.idAlliance `+ ` WHERE PL.idAlliance = ` + APP_GLOBAL.ID_ALLIANCE;
     const result = execSQL(query)
     return result
 }

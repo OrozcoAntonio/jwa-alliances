@@ -1,7 +1,23 @@
 import { Response, Request } from 'express'
-import { srvGetOneRecord, srvGetRecordSemana, srvGetRecordAnio, srvGetRecordSemanaPlayer, srvGetRecordAnioPlayer, srvGetRecordSemanaMision, srvGetRecordAnioMision, srvCreateOneRecord, srvUpdateOneRecord, srvDeleteOneRecord } from '../servicios/recordService'
+import { srvGetRecordSemana } from '../servicios/recordService'
+//import { srvGetOneRecord, srvGetRecordSemana, srvGetRecordAnio, srvGetRecordSemanaPlayer, srvGetRecordAnioPlayer, srvGetRecordSemanaMision, srvGetRecordAnioMision, srvCreateOneRecord, srvUpdateOneRecord, srvDeleteOneRecord } from '../servicios/recordService'
+
+export const ctrlGetRecordSemana = async (req: Request, res: Response) => {
+    const getSemanaAnio = req.params;
+    if (!getSemanaAnio.anio || !getSemanaAnio.semana) {
+        res.status(400).end()
+        return;
+    }
+
+    const anio = parseInt(getSemanaAnio.anio);
+    const semana = parseInt(getSemanaAnio.semana);
+    const getRecord = { anio, semana }
+    const rtnRecord = await srvGetRecordSemana(getRecord)
+    res.status(201).json(rtnRecord)
+}
 
 //'idRecord'|'anio'|'semana'|'idPlayer'|'idMission'|'posicion'|'rank'
+/*
 export const ctrlGetOneRecord = async (req: Request, res: Response) => {
     const { idRecord, anio, semana } = req.body;
 
@@ -14,19 +30,6 @@ export const ctrlGetOneRecord = async (req: Request, res: Response) => {
     const rtnRecord = await srvGetOneRecord(getOneRecord)
     res.status(201).json(rtnRecord)
 }
-
-export const ctrlGetRecordSemana = async (req: Request, res: Response) => {
-    const {anio, semana} = req.params;
-    if ( !anio || !semana ) {
-        res.status(400).end()
-        return;
-    }
-
-    const getRecord = { anio, semana }
-    const rtnRecord = await srvGetRecordSemana( getRecord )
-    res.status(201).json(rtnRecord)
-}
-
 export const ctrlGetRecordAnio = async (req: Request, res: Response) => {
     const {anio} = req.params;
     if ( !anio ) {
@@ -127,3 +130,4 @@ export const ctrlDeleteOneRecord = async (req: Request, res: Response) => {
     const getUpdAlliance = await srvDeleteOneRecord(updRecord)
     res.status(201).json(getUpdAlliance)
 }
+*/

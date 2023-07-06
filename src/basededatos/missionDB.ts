@@ -5,23 +5,24 @@ import execSQL from '../config/execSQL'
 export const dbGetAllMission = () => {
     const query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
     FROM mission MIS 
-    INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance `;
+    INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
+    WHERE MIS.IdAlliance = ` + APP_GLOBAL.ID_ALLIANCE;
     const result = execSQL(query)
     return result
 }
 
- export const dbGetOneMission = (oneMission: oneMissionInterface) => {
+export const dbGetOneMission = (oneMission: oneMissionInterface) => {
     let query
     if (oneMission.idMission !== 0) {
         query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
         FROM mission MIS 
         INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
-        WHERE MIS.idMission = ${oneMission.idMission}`;
+        WHERE MIS.idMission = ${oneMission.idMission}` + ` AND ALI.idAlliance = ` + APP_GLOBAL.ID_ALLIANCE;
     } else {
         query = `SELECT MIS.idMission, MIS.idAlliance, MIS.type, MIS.missionDescripcion, MIS.missionAlias, ALI.Alliance 
         FROM mission MIS 
         INNER JOIN alliance ALI ON MIS.idAlliance = ALI.idAlliance 
-        WHERE ALI.idAlliance = ${oneMission.idMission} 
+        WHERE ALI.idAlliance = `+ APP_GLOBAL.ID_ALLIANCE + `  
         AND MIS.missionDescripcion = '${oneMission.missionDescripcion}' `;
     }
 
