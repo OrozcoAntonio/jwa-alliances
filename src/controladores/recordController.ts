@@ -3,14 +3,13 @@ import { srvGetRecordSemana } from '../servicios/recordService'
 //import { srvGetOneRecord, srvGetRecordSemana, srvGetRecordAnio, srvGetRecordSemanaPlayer, srvGetRecordAnioPlayer, srvGetRecordSemanaMision, srvGetRecordAnioMision, srvCreateOneRecord, srvUpdateOneRecord, srvDeleteOneRecord } from '../servicios/recordService'
 
 export const ctrlGetRecordSemana = async (req: Request, res: Response) => {
-    const getSemanaAnio = req.params;
-    if (!getSemanaAnio.anio || !getSemanaAnio.semana) {
+    const { anio, semana } = req.body;
+
+    if (!anio || !semana) {
         res.status(400).end()
         return;
     }
 
-    const anio = parseInt(getSemanaAnio.anio);
-    const semana = parseInt(getSemanaAnio.semana);
     const getRecord = { anio, semana }
     const rtnRecord = await srvGetRecordSemana(getRecord)
     res.status(201).json(rtnRecord)

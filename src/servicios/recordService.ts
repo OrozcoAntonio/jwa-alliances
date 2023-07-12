@@ -29,8 +29,10 @@ const srvCreateOneRecordSemana = async (newRecord: newRecordInterface) => {
     const recordRank = { 0: false, 1: false }
     const missions = await dbGetAllMission()
 
-    const regMissions = missions.dataLenght
-    console.log(missions)
+    console.clear
+    var algo = missions.reng
+    var longitud = algo.length
+    console.log(longitud)
 
     for (let rank = 0; rank <= 9; rank++) {
         //const jsonRecord = await dbGetRecordSemana()
@@ -38,7 +40,6 @@ const srvCreateOneRecordSemana = async (newRecord: newRecordInterface) => {
 
     return;
 }
-
 
 /*
 export const srvGetOneRecord = async (idRecord: oneRecordInterface) => {

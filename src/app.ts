@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import express, {Request, Response, NextFunction} from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import { PORT } from './config/config'
@@ -50,7 +50,7 @@ app.use(authMiddleware, function (req: Request, res: Response, next: NextFunctio
         if (req.is('json')) {
             next()
         } else {
-            res.status(201).json([{ "status": "NoJson", "data": { "status": "No JSON Object" } }])    
+            res.status(201).json([{ "status": "NoJson", "data": { "status": "No JSON Object" } }])
         }
     } catch (erroir) {
         res.status(201).json([{ "status": erroir, "data": { "status": "No JSON Object" } }])
@@ -71,18 +71,18 @@ function logErrors(err: Error, req: Request, res: Response, next: NextFunction) 
 
 function clientErrorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
     if (req.xhr) {
-      res.status(500).send({ error: 'Something failed!' });
+        res.status(500).send({ error: 'Something failed!' });
     } else {
-      next(err);
+        next(err);
     }
 }
 
 function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
     if (res.headersSent) {
         return next(err);
-      }
-      res.status(500);
-      res.render('error', { error: err });
+    }
+    res.status(500);
+    res.render('error', { error: err });
 }
 
 app.listen(PORT, () => { console.log(`Server en puerto ${PORT}`) })
