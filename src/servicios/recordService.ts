@@ -9,17 +9,18 @@ export const srvGetRecordSemana = async (recordSemana: recordSemanaInterface) =>
     const respGetRecord = { 'statusSrvc': '', 'responseDB': {} }
     const validate = await srvCreateOneRecordSemana(recordSemana);
 
-    const jsonRecord = await dbGetRecordSemana(recordSemana);
-
-    if (jsonRecord.status === "error") {
-        respGetRecord.statusSrvc = jsonRecord.status
-        respGetRecord.responseDB = jsonRecord.errors
-    } else if (jsonRecord.dataLenght > 0) {
-        respGetRecord.statusSrvc = 'exist'
-        respGetRecord.responseDB = jsonRecord
-    } else {
-        respGetRecord.statusSrvc = 'notfound'
-    }
+    //const jsonRecord = await dbGetRecordSemana(recordSemana);
+    /*
+        if (jsonRecord.status === "error") {
+            respGetRecord.statusSrvc = jsonRecord.status
+            respGetRecord.responseDB = jsonRecord.errors
+        } else if (jsonRecord.dataLenght > 0) {
+            respGetRecord.statusSrvc = 'exist'
+            respGetRecord.responseDB = jsonRecord
+        } else {
+            respGetRecord.statusSrvc = 'notfound'
+        }
+    */
 
     return respGetRecord;
 }
@@ -30,13 +31,24 @@ const srvCreateOneRecordSemana = async (newRecord: newRecordInterface) => {
     const missions = await dbGetAllMission()
 
     console.clear
-    var algo = missions.reng
-    var longitud = algo.length
-    console.log(longitud)
-
-    for (let rank = 0; rank <= 9; rank++) {
-        //const jsonRecord = await dbGetRecordSemana()
+    interface Mission {
+        idMission: number
+        idAlliance: number
+        type: string
+        missionDescripcion: string
+        missionAlias: string
+        Alliance: string
     }
+
+    let arrayRows: Mission[] = [];
+    if (Array.isArray(missions.reng)) {
+        arrayRows = missions.reng as Mission[];
+    }
+
+    arrayRows.forEach((value) => {
+        console.log(value.Alliance);
+    });
+
 
     return;
 }
